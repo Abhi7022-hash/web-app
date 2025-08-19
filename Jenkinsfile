@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                checkout scm   // pulls your repo code (from GitHub)
             }
         }
 
@@ -16,9 +16,8 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo "Running basic checks..."
-                sh 'ls -l'
-                sh 'grep "<html>" index.html || exit 1'
+                echo "Checking if index.html exists..."
+                sh 'test -f index.html'   // verifies index.html file is present
             }
         }
 
@@ -33,3 +32,4 @@ pipeline {
         }
     }
 }
+
